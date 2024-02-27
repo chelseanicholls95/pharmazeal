@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.css";
 import Nav from "../components/Nav";
 
 export const metadata = {
