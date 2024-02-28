@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "npm run seed && next start",
+    "lint": "next lint",
+    "seed": "node src/server/data/seed.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
