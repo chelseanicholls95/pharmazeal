@@ -1,5 +1,5 @@
-import { Schema, model } from "mongoose";
-import { hashPassword, validatePassword } from "../utils/password";
+const { Schema, model } = require("mongoose");
+const { hashPassword, validatePassword } = require("../utils/password");
 
 const schema = {
   username: {
@@ -36,4 +36,4 @@ staffSchema.methods.validatePassword = validatePassword;
 
 const Staff = model("Staff", staffSchema);
 
-export default Staff;
+module.exports = Staff;
