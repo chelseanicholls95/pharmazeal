@@ -6,11 +6,13 @@ const Customer = require("../models/Customer");
 
 const stores = require("./stores");
 const staff = require("./staff");
-const stokeCustomers = require("./stokeCustomers");
-const longtonCustomers = require("./longtonCustomers");
-const tunstallCustomers = require("./tunstallCustomers");
-const hanleyCustomers = require("./hanleyCustomers");
-const fentonCustomers = require("./fentonCustomers");
+const {
+  stokeCustomers,
+  longtonCustomers,
+  hanleyCustomers,
+  fentonCustomers,
+  tunstallCustomers,
+} = require("./customers");
 
 db.once("open", async () => {
   try {
@@ -58,6 +60,8 @@ db.once("open", async () => {
     };
 
     const stokeCustomersToSeed = await addStoreId("Stoke", stokeCustomers);
+    const hanleyCustomersToSeed = await addStoreId("Hanley", hanleyCustomers);
+    const fentonCustomersToSeed = await addStoreId("Fenton", fentonCustomers);
     const longtonCustomersToSeed = await addStoreId(
       "Longton",
       longtonCustomers
@@ -66,18 +70,18 @@ db.once("open", async () => {
       "Tunstall",
       tunstallCustomers
     );
-    const hanleyCustomersToSeed = await addStoreId("Hanley", hanleyCustomers);
-    const fentonCustomersToSeed = await addStoreId("Fenton", fentonCustomers);
 
     const customersToSeed = stokeCustomersToSeed.concat(
-      longtonCustomersToSeed,
-      tunstallCustomersToSeed,
       hanleyCustomersToSeed,
-      fentonCustomersToSeed
+      fentonCustomersToSeed,
+      longtonCustomersToSeed,
+      tunstallCustomersToSeed
     );
 
     await Customer.insertMany(customersToSeed);
     console.log("---CUSTOMERS ADDED---");
+    const customersFromDb = await Customer.find({});
+    console.log(customersFromDb.length);
   } catch (error) {
     console.log(error.message);
     throw error;
