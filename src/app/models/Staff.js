@@ -1,5 +1,4 @@
-const { Schema, model } = require("mongoose");
-const { hashPassword, validatePassword } = require("../utils/password");
+import { mongoose, Schema, model } from "mongoose";
 
 const schema = {
   username: {
@@ -34,6 +33,4 @@ staffSchema.pre("save", hashPassword);
 
 staffSchema.methods.validatePassword = validatePassword;
 
-const Staff = model("Staff", staffSchema);
-
-module.exports = Staff;
+export default mongoose.models.Staff || model("Staff", staffSchema);

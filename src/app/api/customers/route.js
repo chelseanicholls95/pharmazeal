@@ -7,7 +7,7 @@ export async function GET() {
 
   try {
     const customers = await Customer.find({});
-    return NextResponse.json("got customers");
+    return NextResponse.json(customers);
   } catch (error) {
     return NextResponse.json({ errors: error.message });
   }

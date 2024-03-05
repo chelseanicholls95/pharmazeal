@@ -7,7 +7,7 @@ export async function GET() {
 
   try {
     const stores = await Store.find({});
-    return NextResponse.json("got stores");
+    return NextResponse.json(stores);
   } catch (error) {
     return NextResponse.json({ errors: error.message });
   }

@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
-import Nav from "../components/Nav";
+import Nav from "../components/Nav/Nav";
 
 export const metadata = {
   title: "Next.js",
