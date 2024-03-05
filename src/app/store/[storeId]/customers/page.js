@@ -1,5 +1,28 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 const CustomerDatabase = () => {
-  return <h1>Customer Database</h1>;
+  // const fetchCustomers = async () => {
+  //   const res = await fetch("/api/customers");
+  //   const customers = await res.json;
+  //   return customers;
+  // };
+
+  // const [customers, setCustomers] = useState();
+
+  // useEffect(() => {
+  //   fetchCustomers().then((customers) => {
+  //     setCustomers(customers);
+  //   });
+  // });
+
+  // console.log(customers);
+  return (
+    <div>
+      <h1>Customers</h1>
+    </div>
+  );
 };
 
 export default CustomerDatabase;
