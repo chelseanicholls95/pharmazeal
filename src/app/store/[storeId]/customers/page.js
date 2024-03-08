@@ -1,27 +1,20 @@
-"use client";
+import Table from "../../../../components/Table/Table";
 
-import { useEffect, useState } from "react";
-
-const CustomerDatabase = () => {
-  const fetchCustomers = async () => {
-    const res = await fetch("/api/customers");
-    const customers = await res.json();
-    return customers;
-  };
-
-  const [customers, setCustomers] = useState();
-
-  useEffect(() => {
-    fetchCustomers().then((customers) => {
-      setCustomers(customers);
-    });
+const fetchCustomers = async () => {
+  const response = await fetch("http://localhost:3000/api/customers", {
+    method: "GET",
   });
 
-  return (
-    <div>
-      <h1>Customers</h1>
-    </div>
-  );
+  return response.json();
 };
 
-export default CustomerDatabase;
+export default async function CustomerDatabase() {
+  const customers = await fetchCustomers();
+  console.log(customers);
+  return (
+    <div>
+      <h1 className="text-center mt-4">Customer Table</h1>;
+      <Table customers={customers} />
+    </div>
+  );
+}
