@@ -29,8 +29,4 @@ const schema = {
 
 const staffSchema = new Schema(schema);
 
-staffSchema.pre("save", hashPassword);
-
-staffSchema.methods.validatePassword = validatePassword;
-
 export default mongoose.models.Staff || model("Staff", staffSchema);
