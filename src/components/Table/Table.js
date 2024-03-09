@@ -1,8 +1,6 @@
 import "./table.css";
 
 const Table = ({ customers }) => {
-  console.log(customers);
-
   return (
     <div>
       <div className="main">
@@ -25,16 +23,16 @@ const Table = ({ customers }) => {
             {customers.map((customer) => {
               return (
                 <tr key={customer.id}>
-                  <td>{customer.firstName}</td>
-                  <td>{customer.surname}</td>
-                  <td>{customer.dateOfBirth}</td>
-                  <td>{customer.houseNumber}</td>
-                  <td>{customer.streetName}</td>
-                  <td>{customer.city}</td>
-                  <td>{customer.county}</td>
-                  <td>{customer.country}</td>
-                  <td>{customer.postCode}</td>
-                  <td>Store</td>
+                  <td key="firstName">{customer.firstName}</td>
+                  <td key="surname">{customer.surname}</td>
+                  <td key="dateOfBirth">{customer.dateOfBirth}</td>
+                  <td key="houseNumber">{customer.houseNumber}</td>
+                  <td key="streetName">{customer.streetName}</td>
+                  <td key="city">{customer.city}</td>
+                  <td key="county">{customer.county}</td>
+                  <td key="country">{customer.country}</td>
+                  <td key="postCode">{customer.postCode}</td>
+                  <td key="store">{customer.store}</td>
                 </tr>
               );
             })}

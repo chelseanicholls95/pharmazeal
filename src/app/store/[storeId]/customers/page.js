@@ -1,16 +1,26 @@
+import moment from "moment";
+
+import fetchCustomers from "../../../controllers/customers";
+import fetchStores from "../../../controllers/stores";
 import Table from "../../../../components/Table/Table";
 
-const fetchCustomers = async () => {
-  const response = await fetch("http://localhost:3000/api/customers", {
-    method: "GET",
+const formatCustomers = async (customers) => {
+  const stores = await fetchStores();
+  return customers.map((customer) => {
+    const newDateOfBirth = moment(customer.dateOfBirth).format("DD/MM/YYYY");
+    const store = stores.find((store) => store._id === customer.store);
+    return {
+      ...customer,
+      dateOfBirth: newDateOfBirth,
+      store: store.name,
+    };
   });
-
-  return response.json();
 };
 
 export default async function CustomerDatabase() {
-  const customers = await fetchCustomers();
-  console.log(customers);
+  const data = await fetchCustomers();
+  const customers = await formatCustomers(data);
+
   return (
     <div>
       <h1 className="text-center mt-4">Customer Table</h1>;
