@@ -36,38 +36,31 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <form className="form bg-dark text-white mt-5" onSubmit={handleSubmit}>
-        <h1 className="title text-center m-3">Store Login</h1>
-        <div className="input">
-          <div className="row mb-3">
-            <div className="col-sm-10 mx-auto">
-              <input
-                type="text"
-                className="form-control"
-                id="username"
-                placeholder="Username"
-                required
-              />
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col-sm-10 mx-auto">
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                placeholder="Password"
-                required
-              />
-            </div>
-          </div>
-          <div className="d-flex justify-content-center">
-            <button type="submit" className="btn btn-outline-light">
-              Log in
-            </button>
-          </div>
-          {error ? <p>{error}</p> : null}
+    <div className="m5">
+      <form className="form bg-dark text-white mt-5">
+        <h1 className="text-center pt-3">Login Form</h1>
+        <div className="pt-5 p-3">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+            className="form-control"
+            required
+          ></input>
+        </div>
+        <div className="p-3">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            className="form-control"
+            required
+          ></input>
+        </div>
+        <div className="p-3 d-grid gap-2">
+          <button className="btn btn-light btn-lg">Submit</button>
         </div>
       </form>
     </div>
