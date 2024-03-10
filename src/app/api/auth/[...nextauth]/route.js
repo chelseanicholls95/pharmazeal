@@ -1,32 +1,26 @@
 import NextAuth from "next-auth";
 import { Account, User as AuthUser } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcrypt";
 import Staff from "@/models/Staff";
 import dbConnect from "@/lib/dbConnect";
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       id: "credentials",
       name: "Credentials",
       credentials: {
-        username: { label: "Username" },
-        password: { label: "Password" },
+        username: { label: "username" },
+        password: { label: "password" },
       },
       async authorize(credentials) {
         await dbConnect();
-
         try {
           const user = await Staff.findOne({ username: credentials.username });
 
           if (user) {
-            const isPasswordCorrect = await bcrypt.compare(
-              credentials.password,
-              user.password
-            );
-
+            const isPasswordCorrect = credentials.password == user.password;
             if (isPasswordCorrect) {
               return user;
             }
@@ -35,10 +29,6 @@ export const authOptions = {
           throw new Error(error);
         }
       },
-    }),
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
 };

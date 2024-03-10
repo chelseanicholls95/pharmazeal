@@ -13,13 +13,13 @@ const LoginForm = () => {
 
   const router = useRouter();
   const [error, setError] = useState("");
-  const session = useSession();
+  const { data: session, status: sessionStatus } = useSession();
 
   useEffect(() => {
-    if (session?.status === "authenticated") {
-      router.replace("/");
+    if (sessionStatus === "authenticated") {
+      router.replace("/dashboard");
     }
-  }, [session, router]);
+  }, [sessionStatus, router]);
 
   const onSubmit = async ({ username, password }) => {
     const response = await signIn("credentials", {
@@ -30,7 +30,7 @@ const LoginForm = () => {
 
     if (response?.error) {
       setError("Invalid email or password");
-      if (response?.url) router.replace("/");
+      if (response?.url) router.replace("/login");
     } else {
       setError("");
     }

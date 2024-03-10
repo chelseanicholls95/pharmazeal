@@ -1,3 +1,5 @@
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import moment from "moment";
 
 import fetchCustomers from "@/controllers/customers";
@@ -18,6 +20,12 @@ const formatCustomers = async (customers) => {
 };
 
 export default async function CustomerDatabase() {
+  const session = await getServerSession();
+
+  if (!session) {
+    redirect("/login");
+  }
+
   const data = await fetchCustomers();
   const customers = await formatCustomers(data);
 
