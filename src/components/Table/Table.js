@@ -1,14 +1,22 @@
 import "./table.css";
 
 const Table = ({ customers }) => {
+  if (typeof customers === "string") {
+    return (
+      <div className="text-centre w-100">
+        <h3>{customers}</h3>;
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="main">
         <table className="table table-dark table-hover">
           <thead>
             <tr>
-              <th>First Name</th>
               <th>Surname</th>
+              <th>First Name</th>
               <th>Date of Birth</th>
               <th>House Number</th>
               <th>Street Name</th>
@@ -23,8 +31,8 @@ const Table = ({ customers }) => {
             {customers.map((customer) => {
               return (
                 <tr key={customer.id}>
-                  <td key="firstName">{customer.firstName}</td>
                   <td key="surname">{customer.surname}</td>
+                  <td key="firstName">{customer.firstName}</td>
                   <td key="dateOfBirth">{customer.dateOfBirth}</td>
                   <td key="houseNumber">{customer.houseNumber}</td>
                   <td key="streetName">{customer.streetName}</td>
