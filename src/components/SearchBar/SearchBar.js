@@ -3,10 +3,18 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
-const SearchBar = ({ customers }) => {
+const SearchBar = ({ page }) => {
   const form = useForm();
   const { register, handleSubmit } = form;
   const router = useRouter();
+
+  let placeholder = "";
+
+  if (page === "customers") {
+    placeholder = "Search by surname";
+  } else {
+    placeholder = "Search by drug name";
+  }
 
   const onSubmit = ({ searchInput }) => {
     const createQueryString = (name, value) => {
@@ -17,13 +25,13 @@ const SearchBar = ({ customers }) => {
     };
 
     const queryString = createQueryString("name", searchInput.toLowerCase());
-    const url = `/customers/search?${queryString}`;
+    const url = `/${page}/search?${queryString}`;
 
     router.push(url);
   };
 
   const onClick = () => {
-    router.push("/customers");
+    router.push(`/${page}`);
   };
 
   return (
@@ -35,8 +43,8 @@ const SearchBar = ({ customers }) => {
         <div className="d-flex w-25">
           <input
             type="text"
-            className="form-control "
-            placeholder="Search by Surname"
+            className="form-control"
+            placeholder={placeholder}
             id="searchInput"
             {...register("searchInput")}
             required
@@ -46,9 +54,15 @@ const SearchBar = ({ customers }) => {
           </button>
         </div>
         <div>
-          <button className="btn btn-danger" onClick={onClick}>
-            Reset Customers
-          </button>
+          {page === "customers" ? (
+            <button className="btn btn-danger" onClick={onClick}>
+              Reset Customers
+            </button>
+          ) : (
+            <button className="btn btn-danger" onClick={onClick}>
+              Reset Inventory
+            </button>
+          )}
         </div>
       </form>
     </div>

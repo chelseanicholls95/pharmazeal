@@ -5,7 +5,7 @@ import { fetchCustomersBySurname } from "@/controllers/customers";
 import formatCustomers from "../formatCustomers";
 
 import SearchBar from "@/components/SearchBar/SearchBar";
-import Table from "@/components/Table/Table";
+import CustomerTable from "@/components/CustomerTable/CustomerTable";
 
 const SearchCustomers = async ({ searchParams }) => {
   const session = await getServerSession();
@@ -24,16 +24,15 @@ const SearchCustomers = async ({ searchParams }) => {
     noCustomers =
       "Could not find any customers with that surname. Please try another surname.";
   }
-  console.log(noCustomers);
 
   return (
     <div>
       <h1 className="text-center mt-4">Customer Table</h1>;
-      <SearchBar />
+      <SearchBar page="customers" />
       {customers.length === 0 ? (
-        <Table customers={noCustomers} />
+        <CustomerTable customers={noCustomers} />
       ) : (
-        <Table customers={customers} />
+        <CustomerTable customers={customers} />
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import "./table.css";
 
-const Table = ({ customers }) => {
+const CustomerTable = ({ customers }) => {
   if (typeof customers === "string") {
     return (
       <div className="text-centre w-100">
@@ -51,4 +51,4 @@ const Table = ({ customers }) => {
   );
 };
 
-export default Table;
+export default CustomerTable;
