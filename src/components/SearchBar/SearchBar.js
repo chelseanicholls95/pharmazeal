@@ -46,7 +46,7 @@ const SearchBar = ({ customers }) => {
           </button>
         </div>
         <div>
-          <button className="btn btn-danger " onClick={onClick}>
+          <button className="btn btn-danger" onClick={onClick}>
             Reset Customers
           </button>
         </div>
