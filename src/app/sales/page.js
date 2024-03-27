@@ -1,6 +1,8 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import SalesTable from "@/components/SalesTable/SalesTable";
+import fetchSales from "@/controllers/sales";
+import formatSales from "@/app/sales/formatSales";
 
 const Sales = async () => {
   const session = await getServerSession();
@@ -9,21 +11,12 @@ const Sales = async () => {
     redirect("/login");
   }
 
-  const sales = [
-    {
-      id: 1,
-      customerName: "Susan Jones",
-      dateOfSale: "21/03/2024",
-      drugName: "Guanfacine",
-      quantity: 2,
-      showId: true,
-      dispensed: false,
-    },
-  ];
+  const data = await fetchSales();
+  const sales = await formatSales(data);
 
   return (
     <div>
-      <h1>Sales</h1>;
+      <h1>Sales</h1>
       <SalesTable sales={sales} />
     </div>
   );

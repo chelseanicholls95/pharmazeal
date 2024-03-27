@@ -21,8 +21,8 @@ const SalesTable = ({ sales }) => {
               console.log(sale.showId);
               return (
                 <tr key={sale.id}>
-                  <td key="saleNumber">{sale.id}</td>
-                  <td key="customerName">{sale.customerName}</td>
+                  <td key="saleNumber">{sale._id}</td>
+                  <td key="customer">{sale.customer}</td>
                   <td key="dateOfSale">{sale.dateOfSale}</td>
                   <td key="drugName">{sale.drugName}</td>
                   <td key="quantity">{sale.quantity}</td>
