@@ -6,4 +6,12 @@ const fetchSales = async () => {
   return response.json();
 };
 
-export default fetchSales;
+const fetchSalesByCustomerId = async (id) => {
+  const response = await fetch(`http://localhost:3000/api/sales/${id}`, {
+    method: "POST",
+  });
+
+  return response.json();
+};
+
+export { fetchSales, fetchSalesByCustomerId };

@@ -1,7 +1,10 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+
 import SalesTable from "@/components/SalesTable/SalesTable";
-import fetchSales from "@/controllers/sales";
+import SearchBar from "@/components/SearchBar/SearchBar";
+
+import { fetchSales } from "@/controllers/sales";
 import formatSales from "@/app/sales/formatSales";
 
 const Sales = async () => {
@@ -12,12 +15,13 @@ const Sales = async () => {
   }
 
   const data = await fetchSales();
-  const sales = await formatSales(data);
+  const formattedSales = await formatSales(data);
 
   return (
     <div>
-      <h1>Sales</h1>
-      <SalesTable sales={sales} />
+      <h1 className="text-center mt-4">Sales</h1>
+      <SearchBar page={"sales"} />
+      <SalesTable sales={formattedSales} />
     </div>
   );
 };

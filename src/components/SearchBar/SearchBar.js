@@ -10,7 +10,7 @@ const SearchBar = ({ page }) => {
 
   let placeholder = "";
 
-  if (page === "customers") {
+  if (page === "customers" || page === "sales") {
     placeholder = "Search by surname";
   } else {
     placeholder = "Search by drug name";
@@ -54,7 +54,7 @@ const SearchBar = ({ page }) => {
           </button>
         </div>
         <div>
-          {page === "customers" ? (
+          {page === "customers" || page === "sales" ? (
             <button className="btn btn-danger" onClick={onClick}>
               Reset Customers
             </button>

@@ -1,6 +1,14 @@
 import "./table.css";
 
 const SalesTable = ({ sales }) => {
+  if (typeof sales === "string") {
+    return (
+      <div className="text-centre w-100">
+        <h3>{sales}</h3>;
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="main">
