@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-import Button from "@/components/Button/Button";
+import LoginButton from "@/components/LoginButton/LoginButton";
 
 const HomePage = async () => {
   const session = await getServerSession();
@@ -12,7 +12,7 @@ const HomePage = async () => {
 
   return (
     <div className="w-100 border d-flex justify-content-center align-items-center vh-100 background">
-      <Button />
+      <LoginButton />
     </div>
   );
 };

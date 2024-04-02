@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-const Button = () => {
+const LoginButton = () => {
   const router = useRouter();
 
   const onClick = () => {
@@ -19,4 +19,4 @@ const Button = () => {
   );
 };
 
-export default Button;
+export default LoginButton;

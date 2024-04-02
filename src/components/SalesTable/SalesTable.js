@@ -1,6 +1,11 @@
+"use client";
 import "./table.css";
 
+import { useRouter } from "next/navigation";
+
 const SalesTable = ({ sales }) => {
+  const router = useRouter();
+
   if (typeof sales === "string") {
     return (
       <div className="text-centre w-100">
@@ -9,10 +14,14 @@ const SalesTable = ({ sales }) => {
     );
   }
 
+  const onClick = () => {
+    router.push(`/sales/dispense`);
+  };
+
   return (
     <div>
       <div className="main">
-        <table className="table table-dark table-hover">
+        <table className="table table-dark table-hover align-middle">
           <thead>
             <tr>
               <th>Order Number</th>
@@ -22,11 +31,11 @@ const SalesTable = ({ sales }) => {
               <th>Quantity</th>
               <th>Show ID?</th>
               <th>Dispensed?</th>
+              <th>Dispense</th>
             </tr>
           </thead>
           <tbody>
             {sales.map((sale) => {
-              console.log(sale.showId);
               return (
                 <tr key={sale.id}>
                   <td key="saleNumber">{sale._id}</td>
@@ -43,6 +52,18 @@ const SalesTable = ({ sales }) => {
                     <td key="dispensed">yes</td>
                   ) : (
                     <td key="dispensed">no</td>
+                  )}
+                  {sale.dispensed ? (
+                    <td key="toDispense"></td>
+                  ) : (
+                    <td key="toDispense">
+                      <button
+                        className="btn btn-sm btn-success"
+                        onClick={onClick}
+                      >
+                        Dispense
+                      </button>
+                    </td>
                   )}
                 </tr>
               );
