@@ -14,4 +14,11 @@ const fetchSalesByCustomerId = async (id) => {
   return response.json();
 };
 
-export { fetchSales, fetchSalesByCustomerId };
+const updateSalesById = async (id) => {
+  const response = await fetch(`http://localhost:3000/api/sales/${id}`, {
+    method: "PUT",
+  });
+  return response.json;
+};
+
+export { fetchSales, fetchSalesByCustomerId, updateSalesById };

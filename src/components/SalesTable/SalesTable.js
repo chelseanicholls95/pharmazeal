@@ -14,8 +14,9 @@ const SalesTable = ({ sales }) => {
     );
   }
 
-  const onClick = () => {
-    router.push(`/sales/dispense`);
+  const onClick = (event) => {
+    const id = event.target.id;
+    router.push(`/sales/dispense/${id}`);
   };
 
   return (
@@ -59,6 +60,7 @@ const SalesTable = ({ sales }) => {
                     <td key="toDispense">
                       <button
                         className="btn btn-sm btn-success"
+                        id={sale._id}
                         onClick={onClick}
                       >
                         Dispense

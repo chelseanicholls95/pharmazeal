@@ -1,12 +1,19 @@
 "use client";
 
-const DispenseButtons = () => {
+import { useRouter } from "next/navigation";
+
+import { updateSalesById } from "@/controllers/sales";
+
+const DispenseButtons = ({ id }) => {
+  const router = useRouter();
+
   const onClickYes = () => {
-    console.log("dispensed");
+    const updated = updateSalesById(id);
+    router.push("/sales");
   };
 
   const onClickNo = () => {
-    console.log("not dispensed");
+    router.back();
   };
 
   return (
