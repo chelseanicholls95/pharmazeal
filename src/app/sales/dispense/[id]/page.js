@@ -1,7 +1,7 @@
 import DispenseButtons from "@/components/DispenseButtons/DispenseButtons";
 
 const DispenseSale = ({ params }) => {
-  const [id] = params.id;
+  const id = params.id;
 
   return (
     <div className="text-center mt-4">

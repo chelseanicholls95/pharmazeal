@@ -6,8 +6,17 @@ const fetchSales = async () => {
   return response.json();
 };
 
+const fetchSaleById = async (id) => {
+  const response = await fetch(
+    `http://localhost:3000/api/sales/dispense/${id}`,
+    { method: "POST" }
+  );
+
+  return response.json();
+};
+
 const fetchSalesByCustomerId = async (id) => {
-  const response = await fetch(`http://localhost:3000/api/sales/${id}`, {
+  const response = await fetch(`http://localhost:3000/api/sales/search/${id}`, {
     method: "POST",
   });
 
@@ -15,10 +24,13 @@ const fetchSalesByCustomerId = async (id) => {
 };
 
 const updateSalesById = async (id) => {
-  const response = await fetch(`http://localhost:3000/api/sales/${id}`, {
-    method: "PUT",
-  });
-  return response.json;
+  const response = await fetch(
+    `http://localhost:3000/api/sales/dispense/${id}`,
+    {
+      method: "PUT",
+    }
+  );
+  return response.json();
 };
 
-export { fetchSales, fetchSalesByCustomerId, updateSalesById };
+export { fetchSales, fetchSaleById, fetchSalesByCustomerId, updateSalesById };

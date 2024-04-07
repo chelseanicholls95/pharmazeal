@@ -25,6 +25,10 @@ const schema = {
     type: Boolean,
     default: false,
   },
+  checkId: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 const saleSchema = new Schema(schema);

@@ -44,7 +44,7 @@ const SalesTable = ({ sales }) => {
                   <td key="dateOfSale">{sale.dateOfSale}</td>
                   <td key="drugName">{sale.drugName}</td>
                   <td key="quantity">{sale.quantity}</td>
-                  {sale.showId ? (
+                  {sale.checkId ? (
                     <td key="showId">yes</td>
                   ) : (
                     <td key="showId">no</td>
