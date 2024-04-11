@@ -16,19 +16,18 @@ const DispenseButtons = ({ id }) => {
       const idChecked = confirm("Please check customer's ID");
 
       if (!idChecked) {
+        alert("This item requires a positive ID check to dispense.");
         router.push("/sales");
       }
     }
 
-    await updateSalesById(id);
+    const updated = await updateSalesById();
 
-    console.log(updated);
-
-    if (updated) {
-      alert("Items dispensed");
-      router.push("/sales");
+    if (updated.acknowledged) {
+      alert("Sale dispensed successfully");
     } else {
-      alert("Unable to complete dispensing item, please try again.");
+      alert("Dispensing has been unsuccessful, please try again.");
+      router.push("/sales");
     }
   };
 

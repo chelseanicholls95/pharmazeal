@@ -6,6 +6,14 @@ const fetchCustomers = async () => {
   return response.json();
 };
 
+const fetchCustomerById = async (id) => {
+  const response = await fetch(`http://localhost:3000/api/customers/${id}`, {
+    method: "POST",
+  });
+
+  return response.json();
+};
+
 const fetchCustomersBySurname = async (surname) => {
   const response = await fetch(
     `http://localhost:3000/api/customers/${surname}`,
@@ -17,4 +25,4 @@ const fetchCustomersBySurname = async (surname) => {
   return response.json();
 };
 
-export { fetchCustomers, fetchCustomersBySurname };
+export { fetchCustomers, fetchCustomerById, fetchCustomersBySurname };
