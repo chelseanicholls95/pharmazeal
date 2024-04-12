@@ -1,6 +1,12 @@
+"use client";
+
 import "./table.css";
 
+import { useRouter } from "next/navigation";
+
 const CustomerTable = ({ customers }) => {
+  const router = useRouter();
+
   if (typeof customers === "string") {
     return (
       <div className="text-centre w-100">
@@ -8,6 +14,11 @@ const CustomerTable = ({ customers }) => {
       </div>
     );
   }
+
+  const onClick = (event) => {
+    const id = event.target.parentElement.id;
+    router.push(`/customers/details/${id}`);
+  };
 
   return (
     <div>
@@ -30,7 +41,7 @@ const CustomerTable = ({ customers }) => {
           <tbody>
             {customers.map((customer) => {
               return (
-                <tr key={customer.id}>
+                <tr key={customer._id} id={customer._id} onClick={onClick}>
                   <td key="surname">{customer.surname}</td>
                   <td key="firstName">{customer.firstName}</td>
                   <td key="dateOfBirth">{customer.dateOfBirth}</td>
