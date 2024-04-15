@@ -21,10 +21,11 @@ const DispenseButtons = ({ id }) => {
       }
     }
 
-    const updated = await updateSalesById();
+    const updated = await updateSalesById(id);
 
     if (updated.acknowledged) {
       alert("Sale dispensed successfully");
+      router.push("/sales");
     } else {
       alert("Dispensing has been unsuccessful, please try again.");
       router.push("/sales");

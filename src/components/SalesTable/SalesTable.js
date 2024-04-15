@@ -36,28 +36,20 @@ const SalesTable = ({ sales }) => {
             </tr>
           </thead>
           <tbody>
-            {sales.map((sale) => {
+            {sales.map((sale, index) => {
               return (
-                <tr key={sale.id}>
-                  <td key="saleNumber">{sale._id}</td>
-                  <td key="customer">{sale.customer}</td>
-                  <td key="dateOfSale">{sale.dateOfSale}</td>
-                  <td key="drugName">{sale.drugName}</td>
-                  <td key="quantity">{sale.quantity}</td>
-                  {sale.checkId ? (
-                    <td key="showId">yes</td>
-                  ) : (
-                    <td key="showId">no</td>
-                  )}
+                <tr key={index}>
+                  <td>{sale._id}</td>
+                  <td>{sale.customer}</td>
+                  <td>{sale.dateOfSale}</td>
+                  <td>{sale.drugName}</td>
+                  <td>{sale.quantity}</td>
+                  {sale.checkId ? <td>yes</td> : <td>no</td>}
+                  {sale.dispensed ? <td>yes</td> : <td>no</td>}
                   {sale.dispensed ? (
-                    <td key="dispensed">yes</td>
+                    <td></td>
                   ) : (
-                    <td key="dispensed">no</td>
-                  )}
-                  {sale.dispensed ? (
-                    <td key="toDispense"></td>
-                  ) : (
-                    <td key="toDispense">
+                    <td>
                       <button
                         className="btn btn-sm btn-success"
                         id={sale._id}

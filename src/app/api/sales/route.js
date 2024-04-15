@@ -12,3 +12,15 @@ export async function GET() {
     return NextResponse.json({ errors: error.message });
   }
 }
+
+export async function POST(req, res) {
+  await dbConnect();
+  const body = await req.json();
+
+  try {
+    const sale = await Sale.create(body);
+    return NextResponse.json(sale);
+  } catch (error) {
+    return NextResponse.json({ errors: error.message });
+  }
+}

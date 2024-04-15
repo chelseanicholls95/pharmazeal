@@ -10,6 +10,7 @@
     "seed": "node src/server/data/seed.js"
   },
   "dependencies": {
+    "aws4": "^1.12.0",
     "bcrypt": "^5.1.1",
     "bootstrap": "^5.3.3",
     "moment": "^2.30.1",

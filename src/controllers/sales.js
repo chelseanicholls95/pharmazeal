@@ -30,7 +30,23 @@ const updateSalesById = async (id) => {
       method: "PUT",
     }
   );
+
   return response.json();
 };
 
-export { fetchSales, fetchSaleById, fetchSalesByCustomerId, updateSalesById };
+const saveNewSale = async (newSale) => {
+  const response = await fetch(`http://localhost:3000/api/sales`, {
+    method: "POST",
+    body: newSale,
+  });
+
+  return response.json();
+};
+
+export {
+  fetchSales,
+  fetchSaleById,
+  fetchSalesByCustomerId,
+  updateSalesById,
+  saveNewSale,
+};

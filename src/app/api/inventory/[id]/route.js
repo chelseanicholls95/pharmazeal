@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import Drug from "@/models/Drug";
 
-export async function POST(url) {
+export async function POST({ url }) {
   await dbConnect();
 
   const splitUrl = url.split("/");
