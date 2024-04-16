@@ -1,6 +1,17 @@
-import "../CustomerTable/table.css";
+"use client";
 
-const InventoryTable = ({ drugs }) => {
+import "../CustomerTable/table.css";
+import { useRouter } from "next/navigation";
+
+const InventoryTable = ({ drugs, searchMedication, customerId }) => {
+  const router = useRouter();
+
+  const onClick = (event) => {
+    if (searchMedication) {
+      const drugId = event.target.parentElement.id;
+      router.push(`/sales/newSale/${customerId}/${drugId}`);
+    }
+  };
   return (
     <div>
       <div className="main">
@@ -15,18 +26,14 @@ const InventoryTable = ({ drugs }) => {
             </tr>
           </thead>
           <tbody>
-            {drugs.map((drug) => {
+            {drugs.map((drug, index) => {
               return (
-                <tr key={drug.id}>
-                  <td key="drugName">{drug.drugName}</td>
-                  <td key="totalStock">{drug.totalStock}</td>
-                  <td key="expiryDate">{drug.expiryDate}</td>
-                  <td key="store">{drug.store}</td>
-                  {drug.requiresId ? (
-                    <td key="requiresId">Yes</td>
-                  ) : (
-                    <td key="requiresId">No</td>
-                  )}
+                <tr key={index} id={drug._id} onClick={onClick}>
+                  <td>{drug.drugName}</td>
+                  <td>{drug.totalStock}</td>
+                  <td>{drug.expiryDate}</td>
+                  <td>{drug.store}</td>
+                  {drug.requiresId ? <td>Yes</td> : <td>No</td>}
                 </tr>
               );
             })}

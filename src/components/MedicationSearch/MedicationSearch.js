@@ -1,38 +1,19 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
-const MedicationSearch = ({ id, drugs }) => {
-  const form = useForm();
-  const { register, handleSubmit } = form;
+const MedicationSearch = ({ id }) => {
+  const router = useRouter();
 
-  const onSubmit = () => {
-    console.log("submmitted");
+  const onClick = () => {
+    router.push(`/inventory/${id}`);
   };
 
   return (
-    <div className="m-4 border">
-      <h3 className="text-center">Purchase Medication</h3>
-      <div className="m-5 d-flex justify-content-center">
-        <form
-          className="form w-100 d-flex justify-content-around"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className="d-flex w-25">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search Medication"
-              id="searchInput"
-              {...register("searchInput")}
-              required
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </div>
-        </form>
-      </div>
+    <div className="m-4 border text-center d-grid gap-2">
+      <button className="btn btn-lg btn-danger m-5" onClick={onClick}>
+        SEARCH FOR MEDICATION
+      </button>
     </div>
   );
 };
