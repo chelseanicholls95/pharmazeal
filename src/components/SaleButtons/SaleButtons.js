@@ -5,14 +5,14 @@ import mongoose from "mongoose";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 import { saveNewSale } from "@/controllers/sales";
 
 const SaleButtons = ({ drug, customer }) => {
   const router = useRouter();
   const [quantity, setQuantity] = useState(1);
-
-  const date = moment().format("MM/DD/YYYY");
+  const { data: session, update, status } = useSession();
 
   const onClickMinus = () => {
     if (quantity > 0) {
@@ -25,6 +25,9 @@ const SaleButtons = ({ drug, customer }) => {
   };
 
   const onClickDispense = async () => {
+    const store = session.user.store;
+    const date = moment().format("MM/DD/YYYY");
+
     const newSale = {
       customer: customer._id,
       drugName: drug._id,
@@ -32,9 +35,13 @@ const SaleButtons = ({ drug, customer }) => {
       dateOfSale: date,
       dispensed: false,
       checkId: drug.requiresId,
+      store: store,
     };
 
     const sale = await saveNewSale(JSON.stringify(newSale));
+    const saleId = sale._id;
+
+    router.push(`/sales/dispense/${saleId}`);
   };
 
   const onClickCancel = () => {

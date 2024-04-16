@@ -30,6 +30,35 @@ export const authOptions = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        console.log(user._id);
+        return {
+          ...token,
+          id: user._id,
+          firstName: user.firstName,
+          surname: user.surname,
+          isAdmin: user.isAdmin,
+          store: user.store,
+        };
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          firstName: token.firstName,
+          surname: token.surname,
+          isAdmin: token.isAdmin,
+          store: token.store,
+        },
+      };
+    },
+  },
 };
 
 export const handler = NextAuth(authOptions);

@@ -17,23 +17,26 @@ const DispenseButtons = ({ id }) => {
 
       if (!idChecked) {
         alert("This item requires a positive ID check to dispense.");
-        router.push("/sales");
+        return router.push("/sales");
       }
     }
 
     const updated = await updateSalesById(id);
+    console.log(updated);
 
     if (updated.acknowledged) {
       alert("Sale dispensed successfully");
-      router.push("/sales");
     } else {
       alert("Dispensing has been unsuccessful, please try again.");
       router.push("/sales");
     }
+
+    router.push("/sales");
+    router.refresh();
   };
 
   const onClickNo = () => {
-    router.back();
+    router.push("/sales");
   };
 
   return (
