@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 
 import "./loginform.css";
 
@@ -73,7 +72,6 @@ const LoginForm = () => {
           </div>
         ) : null}
       </form>
-      <DevTool control={control} />
     </div>
   );
 };

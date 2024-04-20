@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
+import BackgroundImage from "@/components/BackgroundImage/BackgroundImage";
 import LoginButton from "@/components/LoginButton/LoginButton";
 
 const HomePage = async () => {
@@ -11,8 +12,12 @@ const HomePage = async () => {
   }
 
   return (
-    <div className="w-100 border d-flex justify-content-center align-items-center vh-100 background">
-      <LoginButton />
+    <div>
+      <BackgroundImage />
+      <h1 className="text-center m-5 display-1">PharmaZeal</h1>
+      <div className="d-flex justify-content-center align-items-center">
+        <LoginButton />
+      </div>
     </div>
   );
 };

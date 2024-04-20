@@ -42,7 +42,7 @@ const CustomerDetails = async ({ params }) => {
 
   return (
     <div>
-      <h1 className="m-5 text-center">Customer Details</h1>
+      <h1 className="m-5 text-center display-1">Customer Details</h1>
       <div className="d-flex flex-column">
         <CustomerInfo
           customer={customer}

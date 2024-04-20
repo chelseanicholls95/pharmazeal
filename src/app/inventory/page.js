@@ -19,7 +19,7 @@ const Inventory = async () => {
 
   return (
     <div>
-      <h1 className="text-center mt-4">Inventory</h1>;
+      <h1 className="text-center mt-4 display-1">Inventory</h1>;
       <SearchBar page={"inventory"} />
       <InventoryTable drugs={drugs} />
     </div>

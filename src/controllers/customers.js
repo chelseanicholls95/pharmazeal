@@ -16,7 +16,7 @@ const fetchCustomerById = async (id) => {
 
 const fetchCustomersBySurname = async (surname) => {
   const response = await fetch(
-    `http://localhost:3000/api/customers/${surname}`,
+    `http://localhost:3000/api/customers/search/${surname}`,
     {
       method: "POST",
     }

@@ -27,7 +27,7 @@ const SearchCustomers = async ({ searchParams }) => {
 
   return (
     <div>
-      <h1 className="text-center mt-4">Customer Table</h1>;
+      <h1 className="text-center mt-4 display-1">Customer Table</h1>;
       <SearchBar page="customers" />
       {customers.length === 0 ? (
         <CustomerTable customers={noCustomers} />

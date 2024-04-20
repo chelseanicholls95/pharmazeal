@@ -17,26 +17,26 @@ const SearchSales = async ({ searchParams }) => {
 
   const surname = searchParams.name;
   const data = await fetchCustomersBySurname(surname);
-  const id = data[0]._id;
-  const customerSales = await fetchSalesByCustomerId(id);
 
-  if (customerSales.length === 0) {
+  if (data.length === 0) {
     const noCustomers =
       "Could not find any customer sales with that surname. Please try another surname.";
     return (
       <div>
-        <h1 className="text-center mt-4">Sales</h1>;
+        <h1 className="text-center mt-4 display-1">Sales</h1>;
         <SearchBar page="sales" />
         <SalesTable sales={noCustomers} />
       </div>
     );
   }
 
+  const id = data[0]._id;
+  const customerSales = await fetchSalesByCustomerId(id);
   const formattedSales = await formatSales(customerSales);
 
   return (
     <div>
-      <h1 className="text-center mt-4">Sales</h1>;
+      <h1 className="text-center mt-4 display-1">Sales</h1>;
       <SearchBar page="sales" />
       <SalesTable sales={formattedSales} />
     </div>

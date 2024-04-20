@@ -25,7 +25,7 @@ const CustomerInfo = ({ customer, previousMedication }) => {
 
   return (
     <div className="d-flex">
-      <div className="m-4 w-50 border">
+      <div className="m-4 w-50 bg-dark text-light border border-dark rounded">
         <h3 className="text-center mt-3">
           {firstName} {surname}
         </h3>
@@ -38,10 +38,10 @@ const CustomerInfo = ({ customer, previousMedication }) => {
           <h5>Store: {store}</h5>
         </div>
       </div>
-      <div className="m-4 w-50 border">
+      <div className="m-4 w-50 bg-dark text-light border border-dark rounded">
         <h3 className="text-center mt-3">Previous Medication</h3>
         <div className="m-3">
-          <table className="table table-dark table-hover text-center">
+          <table className="table table-dark table-hover border text-center">
             <tbody>
               {typeof previousMedication === "string" ? (
                 <tr key="noMedication">

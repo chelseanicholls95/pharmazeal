@@ -6,7 +6,7 @@ export async function POST({ url }) {
   await dbConnect();
 
   const splitUrl = url.split("/");
-  const userInput = splitUrl[5];
+  const userInput = splitUrl[6];
   const drugName = userInput.charAt(0).toUpperCase() + userInput.slice(1);
 
   try {

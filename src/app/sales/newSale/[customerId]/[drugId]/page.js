@@ -2,6 +2,7 @@ import { fetchCustomerById } from "@/controllers/customers";
 import { fetchDrugById } from "@/controllers/inventory";
 
 import SalesButtons from "@/components/SaleButtons/SaleButtons";
+import BackgroundImage from "@/components/BackgroundImage/BackgroundImage";
 
 const NewSale = async ({ params }) => {
   const { customerId, drugId } = params;
@@ -10,9 +11,10 @@ const NewSale = async ({ params }) => {
   const [customer] = await fetchCustomerById(customerId);
 
   return (
-    <div className="m-5 border rounded-5 shadow-lg p-3 mb-5 bg-dark text-light text-center">
-      <h1 className="mt-5">New sale of {drug.drugName}</h1>
-      <h5 className="m-3">Quantity</h5>
+    <div className=" p-3 mb-5 text-center">
+      <BackgroundImage />
+      <h1 className="mt-5 display-2">New sale of {drug.drugName}</h1>
+      <h3 className="mt-5">Quantity</h3>
 
       <SalesButtons drug={drug} customer={customer} />
     </div>

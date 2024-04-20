@@ -1,6 +1,8 @@
 import "bootstrap/dist/css/bootstrap.css";
 import Nav from "@/components/Nav/Nav";
+import image from "@/assets/images/pharmacy.jpg";
 
+import Image from "next/image";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/utils/SessionProvider";
 
@@ -14,12 +16,15 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body>
+      <body
+        style={{
+          backgroundColor: "#ffc700",
+          height: "vh-100",
+        }}
+      >
         <SessionProvider session={session}>
-          <div>
-            <Nav />
-            {children}
-          </div>
+          <Nav />
+          {children}
         </SessionProvider>
       </body>
     </html>

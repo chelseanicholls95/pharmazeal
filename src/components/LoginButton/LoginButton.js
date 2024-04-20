@@ -10,11 +10,8 @@ const LoginButton = () => {
   };
 
   return (
-    <button
-      className="btn btn-lg btn-secondary w-50 h-25 m-5"
-      onClick={onClick}
-    >
-      Login
+    <button className="btn btn-lg btn-dark w-50 m-5" onClick={onClick}>
+      <h1>Login</h1>
     </button>
   );
 };

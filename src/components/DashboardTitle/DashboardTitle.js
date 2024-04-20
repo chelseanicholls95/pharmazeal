@@ -8,7 +8,9 @@ const DashboardTitle = () => {
   return (
     <div>
       {session ? (
-        <h1 className="m-5 text-center">Hi, {session.user.firstName}! </h1>
+        <h1 className="m-5 text-center display-1">
+          Hi, {session.user.firstName}!{" "}
+        </h1>
       ) : (
         <div>Loading...</div>
       )}

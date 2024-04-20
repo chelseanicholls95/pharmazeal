@@ -9,7 +9,7 @@ const CustomerTable = ({ customers }) => {
 
   if (typeof customers === "string") {
     return (
-      <div className="text-centre w-100">
+      <div className="text-center m-5">
         <h3>{customers}</h3>;
       </div>
     );

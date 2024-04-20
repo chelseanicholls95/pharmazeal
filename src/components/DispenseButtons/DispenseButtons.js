@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import { updateSalesById } from "@/controllers/sales";
+import { fetchSaleById, updateSalesById } from "@/controllers/sales";
 
 import checkId from "@/app/sales/dispense/[id]/checkId";
 

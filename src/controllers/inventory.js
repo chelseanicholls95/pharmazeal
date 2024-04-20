@@ -16,7 +16,7 @@ const fetchDrugById = async (id) => {
 
 const fetchDrugsByName = async (drugName) => {
   const response = await fetch(
-    `http://localhost:3000/api/search/inventory/${drugName}`,
+    `http://localhost:3000/api/inventory/search/${drugName}`,
     {
       method: "POST",
     }

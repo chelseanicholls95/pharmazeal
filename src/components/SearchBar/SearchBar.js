@@ -49,7 +49,7 @@ const SearchBar = ({ page }) => {
             {...register("searchInput")}
             required
           />
-          <button className="btn btn-outline-success" type="submit">
+          <button className="btn btn-primary" type="submit">
             Search
           </button>
         </div>

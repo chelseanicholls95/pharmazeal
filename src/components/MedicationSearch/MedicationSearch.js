@@ -10,7 +10,7 @@ const MedicationSearch = ({ id }) => {
   };
 
   return (
-    <div className="m-4 border text-center d-grid gap-2">
+    <div className=" text-center d-grid gap-2">
       <button className="btn btn-lg btn-danger m-5" onClick={onClick}>
         SEARCH FOR MEDICATION
       </button>
