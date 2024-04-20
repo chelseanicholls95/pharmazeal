@@ -23,7 +23,7 @@ const formatSales = async (data) => {
       dateOfSale: newDateOfSale,
       storeId: sale.store,
       store: store.name,
-      showId: drug.showId,
+      showId: drug.requiresId,
     };
   });
 
