@@ -2,9 +2,11 @@
 import "./table.css";
 
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const SalesTable = ({ sales }) => {
   const router = useRouter();
+  const { data: session } = useSession();
 
   if (typeof sales === "string") {
     return (
@@ -21,50 +23,89 @@ const SalesTable = ({ sales }) => {
 
   return (
     <div>
-      <div className="main">
-        <table className="table table-dark table-hover align-middle">
-          <thead>
-            <tr>
-              <th>Order Number</th>
-              <th>Customer Name</th>
-              <th>Date of Sale</th>
-              <th>Drug Name</th>
-              <th>Quantity</th>
-              <th>Show ID?</th>
-              <th>Dispensed?</th>
-              <th>Dispense</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sales.map((sale, index) => {
-              return (
-                <tr key={index}>
-                  <td>{sale._id}</td>
-                  <td>{sale.customer}</td>
-                  <td>{sale.dateOfSale}</td>
-                  <td>{sale.drugName}</td>
-                  <td>{sale.quantity}</td>
-                  {sale.checkId ? <td>yes</td> : <td>no</td>}
-                  {sale.dispensed ? <td>yes</td> : <td>no</td>}
-                  {sale.dispensed ? (
-                    <td></td>
-                  ) : (
-                    <td>
-                      <button
-                        className="btn btn-sm btn-success"
-                        id={sale._id}
-                        onClick={onClick}
-                      >
-                        Dispense
-                      </button>
-                    </td>
-                  )}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      {!session ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="main">
+          <table className="table table-dark table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Order Number</th>
+                <th>Customer Name</th>
+                <th>Date of Sale</th>
+                <th>Drug Name</th>
+                <th>Quantity</th>
+                <th>Store</th>
+                <th>Show ID?</th>
+                <th>Dispensed?</th>
+              </tr>
+            </thead>
+            {session.user.isAdmin ? (
+              <tbody>
+                {sales.map((sale, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{sale._id}</td>
+                      <td>{sale.customer}</td>
+                      <td>{sale.dateOfSale}</td>
+                      <td>{sale.drugName}</td>
+                      <td>{sale.quantity}</td>
+                      <td>{sale.store}</td>
+                      {sale.checkId ? <td>yes</td> : <td>no</td>}
+                      {sale.dispensed ? (
+                        <td>yes</td>
+                      ) : (
+                        <td>
+                          <button
+                            className="btn btn-sm btn-success"
+                            id={sale._id}
+                            onClick={onClick}
+                          >
+                            Dispense
+                          </button>
+                        </td>
+                      )}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            ) : (
+              <tbody>
+                {sales.map((sale, index) => {
+                  if (sale.storeId === session.user.store) {
+                    return (
+                      <tr key={index}>
+                        <td>{sale._id}</td>
+                        <td>{sale.customer}</td>
+                        <td>{sale.dateOfSale}</td>
+                        <td>{sale.drugName}</td>
+                        <td>{sale.quantity}</td>
+                        <td>{sale.store}</td>
+                        {sale.checkId ? <td>yes</td> : <td>no</td>}
+                        {sale.dispensed ? (
+                          <td>yes</td>
+                        ) : (
+                          <td>
+                            <button
+                              className="btn btn-sm btn-success"
+                              id={sale._id}
+                              onClick={onClick}
+                            >
+                              Dispense
+                            </button>
+                          </td>
+                        )}
+                      </tr>
+                    );
+                  } else {
+                    return;
+                  }
+                })}
+              </tbody>
+            )}
+          </table>
+        </div>
+      )}
     </div>
   );
 };

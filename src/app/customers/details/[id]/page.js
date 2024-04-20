@@ -20,6 +20,7 @@ const CustomerDetails = async ({ params }) => {
 
   const removeDuplicates = (previousMedication) => {
     let uniqueArray = [];
+
     previousMedication.forEach((drug) => {
       if (!uniqueArray.find((unique) => unique.id === drug.id)) {
         uniqueArray.push(drug);
@@ -29,7 +30,7 @@ const CustomerDetails = async ({ params }) => {
   };
 
   if (previousSales.length === 0) {
-    previousMedication = "No previous medication";
+    uniquePreviousMedication = "No previous medication";
   } else {
     previousMedication = previousSales.map((sale) => {
       const medication = drugs.find((drug) => drug._id === sale.drugName);

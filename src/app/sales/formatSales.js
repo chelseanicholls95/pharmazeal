@@ -21,6 +21,7 @@ const formatSales = async (data) => {
       customer: `${customer.firstName} ${customer.surname}`,
       drugName: drug.drugName,
       dateOfSale: newDateOfSale,
+      storeId: sale.store,
       store: store.name,
       showId: drug.showId,
     };

@@ -15,7 +15,7 @@ const Sales = async () => {
   }
 
   const data = await fetchSales();
-  const formattedSales = await formatSales(data);
+  const formattedSales = await formatSales(data.reverse());
 
   return (
     <div>

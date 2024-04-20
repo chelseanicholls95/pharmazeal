@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Nav from "@/components/Nav/Nav";
 
 import { getServerSession } from "next-auth";
-import SessionProvider from "../utils/SessionProvider";
+import SessionProvider from "@/utils/SessionProvider";
 
 export const metadata = {
   title: "PharmaZeal",

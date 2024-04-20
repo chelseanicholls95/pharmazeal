@@ -12,7 +12,7 @@ const Nav = () => {
       data-bs-theme="dark"
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           <Image
             src={logo}
             alt="Logo"
