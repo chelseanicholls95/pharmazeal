@@ -12,3 +12,15 @@ export async function GET() {
     return NextResponse.json({ errors: error.message });
   }
 }
+
+export async function PUT(req) {
+  await dbConnect();
+  const { id, quantity } = await req.json();
+
+  try {
+    const drug = await Drug.updateOne({ _id: id }, { totalStock: quantity });
+    return NextResponse.json(drug);
+  } catch (error) {
+    return NextResponse.json({ errors: error.message });
+  }
+}

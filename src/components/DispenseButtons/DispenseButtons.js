@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 
 import { fetchSaleById, updateSalesById } from "@/controllers/sales";
+import { fetchDrugById, updateDrugQuantity } from "@/controllers/inventory";
 
 import checkId from "@/app/sales/dispense/[id]/checkId";
 
@@ -21,13 +22,28 @@ const DispenseButtons = ({ id }) => {
       }
     }
 
+    const [sale] = await fetchSaleById(id);
+
+    const [drug] = await fetchDrugById(sale.drugName);
+    const quantity = drug.totalStock - sale.quantity;
+
+    const newQuantity = {
+      id: sale.drugName,
+      quantity: quantity,
+    };
+
     const updated = await updateSalesById(id);
+    await updateDrugQuantity(newQuantity);
 
     if (updated.acknowledged) {
       alert("Sale dispensed successfully");
     } else {
       alert("Dispensing has been unsuccessful, please try again.");
       router.push("/sales");
+    }
+
+    if (quantity < 10) {
+      alert(`Stock of ${drug.drugName} is ${quantity}. Replenishment needed.`);
     }
 
     router.push("/sales");
