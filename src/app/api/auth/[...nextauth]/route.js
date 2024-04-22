@@ -33,7 +33,6 @@ export const authOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        console.log(user._id);
         return {
           ...token,
           id: user._id,

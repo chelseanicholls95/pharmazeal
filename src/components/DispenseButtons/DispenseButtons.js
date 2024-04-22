@@ -22,7 +22,6 @@ const DispenseButtons = ({ id }) => {
     }
 
     const updated = await updateSalesById(id);
-    console.log(updated);
 
     if (updated.acknowledged) {
       alert("Sale dispensed successfully");
