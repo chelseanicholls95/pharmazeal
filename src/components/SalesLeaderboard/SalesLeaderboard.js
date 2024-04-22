@@ -3,7 +3,7 @@ const SalesLeaderboard = ({ leaderboard }) => {
   const title = winner.toUpperCase();
 
   return (
-    <div className="m-5 p-3 bg-dark text-light border border-dark text-center">
+    <div className="m-5 p-3 w-100 bg-dark text-light border border-dark text-center">
       <h1>CONGRATULATIONS {title}! </h1>
       <table className="mt-5 table table-dark table-bordered">
         <thead>

@@ -6,6 +6,7 @@ import formatSales from "../sales/formatSales";
 import calculateSales from "./calculateSales";
 
 import DashboardTitle from "@/components/DashboardTitle/DashboardTitle";
+import DashboardNavigation from "@/components/DashboardNavigation/DashboardNavigation";
 import SalesLeaderboard from "@/components/SalesLeaderboard/SalesLeaderboard";
 
 const Dashboard = async () => {
@@ -36,7 +37,10 @@ const Dashboard = async () => {
   return (
     <div>
       <DashboardTitle />
-      <SalesLeaderboard leaderboard={leaderboard} />
+      <div className="d-flex justify-content-center w-100">
+        <DashboardNavigation />
+        <SalesLeaderboard leaderboard={leaderboard} />
+      </div>
     </div>
   );
 };
