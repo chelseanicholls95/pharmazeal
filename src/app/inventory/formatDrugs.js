@@ -10,6 +10,7 @@ const formatDrugs = async (drugs) => {
     const store = stores.find((store) => store._id === drug.store);
     return {
       ...drug,
+      price: `£${drug.price}`,
       expiryDate: newExpiryDate,
       store: store.name,
     };

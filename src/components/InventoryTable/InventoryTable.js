@@ -20,6 +20,7 @@ const InventoryTable = ({ drugs, searchMedication, customerId }) => {
             <tr>
               <th>Drug Name</th>
               <th>Total Stock</th>
+              <th>Price</th>
               <th>Expiry Date</th>
               <th>Store</th>
               <th>Requires ID?</th>
@@ -31,6 +32,7 @@ const InventoryTable = ({ drugs, searchMedication, customerId }) => {
                 <tr key={index} id={drug._id} onClick={onClick}>
                   <td>{drug.drugName}</td>
                   <td>{drug.totalStock}</td>
+                  <td>{drug.price}</td>
                   <td>{drug.expiryDate}</td>
                   <td>{drug.store}</td>
                   {drug.requiresId ? <td>Yes</td> : <td>No</td>}

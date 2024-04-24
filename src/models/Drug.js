@@ -9,6 +9,10 @@ const schema = {
     type: Number,
     required: true,
   },
+  price: {
+    type: String,
+    required: true,
+  },
   expiryDate: {
     type: Date,
     required: true,
