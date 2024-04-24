@@ -27,11 +27,7 @@ const Nav = () => {
             <a className="nav-link" href="/dashboard">
               Dashboard
             </a>
-            <a
-              className="nav-link active"
-              aria-current="page"
-              href="/customers"
-            >
+            <a className="nav-link" href="/customers">
               Customer Database
             </a>
             <a className="nav-link" href="/inventory">

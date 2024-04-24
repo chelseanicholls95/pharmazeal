@@ -18,6 +18,7 @@ const CustomerTable = ({ customers }) => {
   const onClick = (event) => {
     const id = event.target.parentElement.id;
     router.push(`/customers/details/${id}`);
+    router.refresh();
   };
 
   return (

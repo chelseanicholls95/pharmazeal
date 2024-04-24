@@ -42,6 +42,14 @@ const schema = {
     type: Schema.Types.ObjectId,
     ref: "Store",
   },
+  allergies: {
+    type: [String],
+    default: [],
+  },
+  medicalConditions: {
+    type: [String],
+    default: [],
+  },
 };
 
 const customerSchema = new Schema(schema);
