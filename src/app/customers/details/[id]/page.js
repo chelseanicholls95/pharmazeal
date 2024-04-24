@@ -26,7 +26,7 @@ const CustomerDetails = async ({ params }) => {
         uniqueArray.push(drug);
       }
     });
-    return uniqueArray;
+    return uniqueArray.reverse().slice(0, 4);
   };
 
   if (previousSales.length === 0) {
