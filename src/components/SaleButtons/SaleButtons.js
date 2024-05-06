@@ -12,16 +12,25 @@ import { saveNewSale } from "@/controllers/sales";
 const SaleButtons = ({ drug, customer }) => {
   const router = useRouter();
   const [quantity, setQuantity] = useState(1);
+  const [price, setPrice] = useState(drug.price);
   const { data: session, update, status } = useSession();
 
   const onClickMinus = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
+    if (quantity > 1) {
+      const newQuantity = quantity - 1;
+      const updatedPrice = drug.price * newQuantity;
+
+      setQuantity(newQuantity);
+      setPrice(updatedPrice);
     }
   };
 
   const onClickPlus = () => {
-    setQuantity(quantity + 1);
+    const newQuantity = quantity + 1;
+    const updatedPrice = drug.price * newQuantity;
+
+    setQuantity(newQuantity);
+    setPrice(updatedPrice);
   };
 
   const onClickDispense = async () => {
@@ -32,6 +41,7 @@ const SaleButtons = ({ drug, customer }) => {
       customer: customer._id,
       drugName: drug._id,
       quantity: quantity,
+      totalPrice: price,
       dateOfSale: date,
       dispensed: false,
       checkId: drug.requiresId,
@@ -58,6 +68,7 @@ const SaleButtons = ({ drug, customer }) => {
         <button className="btn btn-dark mx-4" onClick={onClickPlus}>
           +
         </button>
+        <h3>Total Price: £{price}.00</h3>
       </div>
       <button className="m-4 btn btn-lg btn-success" onClick={onClickDispense}>
         Continue

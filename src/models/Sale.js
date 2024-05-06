@@ -13,6 +13,10 @@ const schema = {
     type: Number,
     required: true,
   },
+  totalPrice: {
+    type: String,
+    required: true,
+  },
   dateOfSale: {
     type: Date,
     required: true,

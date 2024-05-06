@@ -35,6 +35,7 @@ const SalesTable = ({ sales }) => {
                 <th>Date of Sale</th>
                 <th>Drug Name</th>
                 <th>Quantity</th>
+                <th>Price</th>
                 <th>Store</th>
                 <th>Show ID?</th>
                 <th>Dispensed?</th>
@@ -50,6 +51,7 @@ const SalesTable = ({ sales }) => {
                       <td>{sale.dateOfSale}</td>
                       <td>{sale.drugName}</td>
                       <td>{sale.quantity}</td>
+                      <td>£{sale.totalPrice}.00</td>
                       <td>{sale.store}</td>
                       {sale.checkId ? <td>yes</td> : <td>no</td>}
                       {sale.dispensed ? (
@@ -80,6 +82,7 @@ const SalesTable = ({ sales }) => {
                         <td>{sale.dateOfSale}</td>
                         <td>{sale.drugName}</td>
                         <td>{sale.quantity}</td>
+                        <td>£{sale.totalPrice}.00</td>
                         <td>{sale.store}</td>
                         {sale.checkId ? <td>yes</td> : <td>no</td>}
                         {sale.dispensed ? (

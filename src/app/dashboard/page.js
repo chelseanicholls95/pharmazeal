@@ -17,6 +17,17 @@ const Dashboard = async () => {
   }
 
   const data = await fetchSales();
+  if (data.length === 0) {
+    return (
+      <div>
+        <DashboardTitle />
+        <div className="d-flex justify-content-center w-100">
+          <DashboardNavigation />
+        </div>
+      </div>
+    );
+  }
+
   const sales = await formatSales(data);
 
   const stokeSales = calculateSales(sales, "Stoke");

@@ -15,7 +15,6 @@ const NewSale = async ({ params }) => {
       <BackgroundImage />
       <h1 className="mt-5 display-2">New sale of {drug.drugName}</h1>
       <h3 className="mt-5">Quantity</h3>
-
       <SalesButtons drug={drug} customer={customer} />
     </div>
   );
