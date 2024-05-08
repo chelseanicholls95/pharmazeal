@@ -41,71 +41,35 @@ const SalesTable = ({ sales }) => {
                 <th>Dispensed?</th>
               </tr>
             </thead>
-            {session.user.isAdmin ? (
-              <tbody>
-                {sales.map((sale, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{sale._id}</td>
-                      <td>{sale.customer}</td>
-                      <td>{sale.dateOfSale}</td>
-                      <td>{sale.drugName}</td>
-                      <td>{sale.quantity}</td>
-                      <td>£{sale.totalPrice}.00</td>
-                      <td>{sale.store}</td>
-                      {sale.checkId ? <td>yes</td> : <td>no</td>}
-                      {sale.dispensed ? (
-                        <td>yes</td>
-                      ) : (
-                        <td>
-                          <button
-                            className="btn btn-sm btn-success"
-                            id={sale._id}
-                            onClick={onClick}
-                          >
-                            Dispense
-                          </button>
-                        </td>
-                      )}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            ) : (
-              <tbody>
-                {sales.map((sale, index) => {
-                  if (sale.storeId === session.user.store) {
-                    return (
-                      <tr key={index}>
-                        <td>{sale._id}</td>
-                        <td>{sale.customer}</td>
-                        <td>{sale.dateOfSale}</td>
-                        <td>{sale.drugName}</td>
-                        <td>{sale.quantity}</td>
-                        <td>£{sale.totalPrice}.00</td>
-                        <td>{sale.store}</td>
-                        {sale.checkId ? <td>yes</td> : <td>no</td>}
-                        {sale.dispensed ? (
-                          <td>yes</td>
-                        ) : (
-                          <td>
-                            <button
-                              className="btn btn-sm btn-success"
-                              id={sale._id}
-                              onClick={onClick}
-                            >
-                              Dispense
-                            </button>
-                          </td>
-                        )}
-                      </tr>
-                    );
-                  } else {
-                    return;
-                  }
-                })}
-              </tbody>
-            )}
+            <tbody>
+              {sales.map((sale, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{sale._id}</td>
+                    <td>{sale.customer}</td>
+                    <td>{sale.dateOfSale}</td>
+                    <td>{sale.drugName}</td>
+                    <td>{sale.quantity}</td>
+                    <td>£{sale.totalPrice}.00</td>
+                    <td>{sale.store}</td>
+                    {sale.checkId ? <td>yes</td> : <td>no</td>}
+                    {sale.dispensed ? (
+                      <td>yes</td>
+                    ) : (
+                      <td>
+                        <button
+                          className="btn btn-sm btn-success"
+                          id={sale._id}
+                          onClick={onClick}
+                        >
+                          Dispense
+                        </button>
+                      </td>
+                    )}
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
       )}

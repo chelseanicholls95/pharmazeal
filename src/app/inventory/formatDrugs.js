@@ -16,6 +16,10 @@ const formatDrugs = async (drugs) => {
     };
   });
 
+  if (mappedDrugs.length === 1) {
+    return mappedDrugs;
+  }
+
   return mappedDrugs.sort((a, b) => a.drugName.localeCompare(b.drugName));
 };
 

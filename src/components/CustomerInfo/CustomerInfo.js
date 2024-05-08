@@ -6,7 +6,6 @@ import MedicalInfo from "../MedicalInfo/MedicalInfo";
 
 const CustomerInfo = ({ customer, previousMedication }) => {
   const router = useRouter();
-  console.log(customer);
 
   const {
     _id,

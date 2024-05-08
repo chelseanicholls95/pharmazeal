@@ -12,6 +12,7 @@ const InventoryTable = ({ drugs, searchMedication, customerId }) => {
       router.push(`/sales/newSale/${customerId}/${drugId}`);
     }
   };
+
   return (
     <div>
       <div className="main">
@@ -32,7 +33,7 @@ const InventoryTable = ({ drugs, searchMedication, customerId }) => {
                 <tr key={index} id={drug._id} onClick={onClick}>
                   <td>{drug.drugName}</td>
                   <td>{drug.totalStock}</td>
-                  <td>{drug.price}</td>
+                  <td>{drug.price}.00</td>
                   <td>{drug.expiryDate}</td>
                   <td>{drug.store}</td>
                   {drug.requiresId ? <td>Yes</td> : <td>No</td>}
