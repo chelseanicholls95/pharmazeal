@@ -1,5 +1,3 @@
-import AddButtons from "@/components/AddButtons/AddButtons";
-
 const MedicalInfo = ({ id, allergies, medicalConditions }) => {
   let length = 0;
 
