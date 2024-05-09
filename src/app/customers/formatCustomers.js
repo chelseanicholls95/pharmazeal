@@ -1,6 +1,6 @@
 import moment from "moment";
 
-import fetchStores from "@/controllers/stores";
+import { fetchStores } from "@/controllers/stores";
 
 const formatCustomers = async (customers) => {
   const stores = await fetchStores();
