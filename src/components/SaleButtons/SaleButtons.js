@@ -13,7 +13,7 @@ const SaleButtons = ({ drug, customer }) => {
   const router = useRouter();
   const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(drug.price);
-  const { data: session, update, status } = useSession();
+  const { data: session } = useSession();
 
   const onClickMinus = () => {
     if (quantity > 1) {
@@ -26,11 +26,13 @@ const SaleButtons = ({ drug, customer }) => {
   };
 
   const onClickPlus = () => {
-    const newQuantity = quantity + 1;
-    const updatedPrice = drug.price * newQuantity;
+    if (quantity < 5) {
+      const newQuantity = quantity + 1;
+      const updatedPrice = drug.price * newQuantity;
 
-    setQuantity(newQuantity);
-    setPrice(updatedPrice);
+      setQuantity(newQuantity);
+      setPrice(updatedPrice);
+    }
   };
 
   const onClickDispense = async () => {
