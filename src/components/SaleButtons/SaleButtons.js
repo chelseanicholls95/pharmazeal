@@ -35,20 +35,34 @@ const SaleButtons = ({ drug, customer }) => {
     }
   };
 
-  const onClickDispense = async () => {
+  const onClickContinue = async () => {
     const store = session.user.store;
     const date = moment().format("MM/DD/YYYY");
 
-    const newSale = {
-      customer: customer._id,
-      drugName: drug._id,
-      quantity: quantity,
-      totalPrice: price,
-      dateOfSale: date,
-      dispensed: false,
-      checkId: drug.requiresId,
-      store: store,
-    };
+    let newSale = {};
+
+    if (customer) {
+      newSale = {
+        customer: customer._id,
+        drugName: drug._id,
+        quantity: quantity,
+        totalPrice: price,
+        dateOfSale: date,
+        dispensed: false,
+        checkId: drug.requiresId,
+        store: store,
+      };
+    } else {
+      newSale = {
+        drugName: drug._id,
+        quantity: quantity,
+        totalPrice: price,
+        dateOfSale: date,
+        dispensed: false,
+        checkId: drug.requiresId,
+        store: store,
+      };
+    }
 
     const sale = await saveNewSale(JSON.stringify(newSale));
     const saleId = sale._id;
@@ -72,7 +86,7 @@ const SaleButtons = ({ drug, customer }) => {
         </button>
         <h3>Total Price: £{price}.00</h3>
       </div>
-      <button className="m-4 btn btn-lg btn-success" onClick={onClickDispense}>
+      <button className="m-4 btn btn-lg btn-success" onClick={onClickContinue}>
         Continue
       </button>
       <button className="m-4 btn btn-lg btn-danger" onClick={onClickCancel}>

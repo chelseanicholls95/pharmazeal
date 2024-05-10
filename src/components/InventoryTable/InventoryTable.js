@@ -7,10 +7,13 @@ const InventoryTable = ({ drugs, searchMedication, customerId }) => {
   const router = useRouter();
 
   const onClick = (event) => {
+    const drugId = event.target.parentElement.id;
+
     if (searchMedication) {
-      const drugId = event.target.parentElement.id;
       router.push(`/sales/newSale/${customerId}/${drugId}`);
     }
+
+    router.push(`/sales/newSale/unregistered/${drugId}`);
   };
 
   return (

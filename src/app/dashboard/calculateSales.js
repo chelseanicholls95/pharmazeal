@@ -1,4 +1,5 @@
 const calculateSales = (sales, store) => {
+  console.log(sales);
   const storeSales = sales.filter((sale) => {
     return sale.store == store;
   });

@@ -16,15 +16,31 @@ const formatSales = async (data) => {
     const store = stores.find((store) => store._id === sale.store);
     const newDateOfSale = moment(sale.dateOfSale).format("DD/MM/YYYY");
 
-    return {
-      ...sale,
-      customer: `${customer.firstName} ${customer.surname}`,
-      drugName: drug.drugName,
-      dateOfSale: newDateOfSale,
-      storeId: sale.store,
-      store: store.name,
-      showId: drug.requiresId,
-    };
+    let newSale = {};
+
+    if (sale.customer) {
+      newSale = {
+        ...sale,
+        customer: `${customer.firstName} ${customer.surname}`,
+        drugName: drug.drugName,
+        dateOfSale: newDateOfSale,
+        storeId: sale.store,
+        store: store.name,
+        showId: drug.requiresId,
+      };
+    } else {
+      newSale = {
+        ...sale,
+        customer: "Unregistered Customer",
+        drugName: drug.drugName,
+        dateOfSale: newDateOfSale,
+        storeId: sale.store,
+        store: store.name,
+        showId: drug.requiresId,
+      };
+    }
+
+    return newSale;
   });
 
   return formattedData;
