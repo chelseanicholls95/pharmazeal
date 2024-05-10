@@ -36,6 +36,12 @@ const Nav = () => {
             <a className="nav-link" href="/sales">
               Sales
             </a>
+            {session.user?.isAdmin && (
+              <a className="nav-link" href="/salesRecord">
+                Sales Record
+              </a>
+            )}
+
             {session.user?.username}
             <button
               onClick={() => {
