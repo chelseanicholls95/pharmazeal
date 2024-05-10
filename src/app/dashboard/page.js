@@ -32,13 +32,13 @@ const Dashboard = async () => {
 
   const stokeSales = calculateSales(sales, "Stoke");
   const longtonSales = calculateSales(sales, "Longton");
-  const henleySales = calculateSales(sales, "Henley");
+  const hanleySales = calculateSales(sales, "Hanley");
   const tunstallSales = calculateSales(sales, "Tunstall");
   const fentonSales = calculateSales(sales, "Fenton");
 
   const leaderboard = stokeSales.concat(
     longtonSales,
-    henleySales,
+    hanleySales,
     tunstallSales,
     fentonSales
   );
