@@ -11,9 +11,9 @@ const InventoryTable = ({ drugs, searchMedication, customerId }) => {
 
     if (searchMedication) {
       router.push(`/sales/newSale/${customerId}/${drugId}`);
+    } else {
+      router.push(`/sales/newSale/unregistered/${drugId}`);
     }
-
-    router.push(`/sales/newSale/unregistered/${drugId}`);
   };
 
   return (

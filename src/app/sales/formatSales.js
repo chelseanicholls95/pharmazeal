@@ -18,7 +18,7 @@ const formatSales = async (data) => {
 
     let newSale = {};
 
-    if (sale.customer) {
+    if (customer) {
       newSale = {
         ...sale,
         customer: `${customer.firstName} ${customer.surname}`,
