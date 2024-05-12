@@ -11,7 +11,6 @@ import formatDrugs from "../formatDrugs";
 
 const filterInventoryByStore = async ({ searchParams }) => {
   const session = await getServerSession();
-
   if (!session) {
     redirect("/login");
   }

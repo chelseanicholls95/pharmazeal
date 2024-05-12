@@ -9,10 +9,10 @@ import CustomerTable from "@/components/CustomerTable/CustomerTable";
 
 const CustomerDatabase = async () => {
   const session = await getServerSession();
-
   if (!session) {
     redirect("/login");
   }
+  
   const data = await fetchCustomers();
   const customers = await formatCustomers(data);
 

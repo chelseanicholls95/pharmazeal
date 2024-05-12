@@ -10,7 +10,6 @@ import SalesTable from "@/components/SalesTable/SalesTable";
 
 const SearchSales = async ({ searchParams }) => {
   const session = await getServerSession();
-
   if (!session) {
     redirect("/login");
   }

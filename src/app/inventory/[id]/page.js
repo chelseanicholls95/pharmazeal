@@ -8,12 +8,12 @@ import SearchBar from "@/components/SearchBar/SearchBar";
 import InventoryTable from "@/components/InventoryTable/InventoryTable";
 
 const SearchInventory = async ({ params }) => {
-  const customerId = params.id;
   const session = await getServerSession();
-
   if (!session) {
     redirect("/login");
   }
+
+  const customerId = params.id;
 
   const data = await fetchDrugs();
   const drugs = await formatDrugs(data);

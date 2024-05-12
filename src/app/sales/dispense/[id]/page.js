@@ -1,8 +1,15 @@
-"use client";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+
 import DispenseButtons from "@/components/DispenseButtons/DispenseButtons";
 import BackgroundImage from "@/components/BackgroundImage/BackgroundImage";
 
-const DispenseSale = ({ params }) => {
+const DispenseSale = async ({ params }) => {
+  const session = await getServerSession();
+  if (!session) {
+    redirect("/login");
+  }
+
   const id = params.id;
 
   return (

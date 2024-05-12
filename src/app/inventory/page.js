@@ -9,7 +9,6 @@ import InventoryTable from "@/components/InventoryTable/InventoryTable";
 
 const Inventory = async () => {
   const session = await getServerSession();
-
   if (!session) {
     redirect("/login");
   }

@@ -11,7 +11,6 @@ import formatSales from "../formatSales";
 
 const filterSalesByStore = async ({ searchParams }) => {
   const session = await getServerSession();
-
   if (!session) {
     redirect("/login");
   }

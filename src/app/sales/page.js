@@ -9,7 +9,6 @@ import formatSales from "@/app/sales/formatSales";
 
 const Sales = async () => {
   const session = await getServerSession();
-
   if (!session) {
     redirect("/login");
   }

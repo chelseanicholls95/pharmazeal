@@ -11,7 +11,6 @@ import SalesLeaderboard from "@/components/SalesLeaderboard/SalesLeaderboard";
 
 const Dashboard = async () => {
   const session = await getServerSession();
-
   if (!session) {
     redirect("/login");
   }

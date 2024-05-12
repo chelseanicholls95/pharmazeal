@@ -26,7 +26,7 @@ const RecordTable = ({ salesRecord }) => {
                 return (
                   <tr key={index}>
                     <td>{record.drugName}</td>
-                    <td>10</td>
+                    <td>{record.totalStock}</td>
                     <td>{record.quantity}</td>
                   </tr>
                 );

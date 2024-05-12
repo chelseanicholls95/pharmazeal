@@ -1,3 +1,6 @@
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+
 import CustomerInfo from "@/components/CustomerInfo/CustomerInfo";
 import MedicationSearch from "@/components/MedicationSearch/MedicationSearch";
 import formatCustomers from "@/app/customers/formatCustomers";
@@ -7,6 +10,11 @@ import { fetchSalesByCustomerId } from "@/controllers/sales";
 import { fetchDrugs } from "@/controllers/inventory";
 
 const CustomerDetails = async ({ params }) => {
+  const session = await getServerSession();
+  if (!session) {
+    redirect("/login");
+  }
+
   const id = params.id;
   const customerDetails = await fetchCustomerById(id);
   const [customer] = await formatCustomers(customerDetails);

@@ -9,7 +9,6 @@ import CustomerTable from "@/components/CustomerTable/CustomerTable";
 
 const SearchCustomers = async ({ searchParams }) => {
   const session = await getServerSession();
-
   if (!session) {
     redirect("/login");
   }

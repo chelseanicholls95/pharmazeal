@@ -9,19 +9,33 @@ import RecordTable from "@/components/RecordTable/RecordTable";
 
 const SalesRecord = async () => {
   const session = await getServerSession();
-
   if (!session) {
     redirect("/login");
+  } else if (!session.user.isAdmin) {
+    redirect("/dashboard");
   }
 
-  const data = await fetchSales();
-  const sales = await formatSales(data);
+  const salesData = await fetchSales();
+  const sales = await formatSales(salesData);
 
-  const drugs = fetchDrugs();
+  const drugs = await fetchDrugs();
 
   let salesRecord = [];
 
   sales.map((sale) => {
+    const stock = drugs.map((drug) => {
+      if (drug.drugName === sale.drugName) {
+        return drug.totalStock;
+      } else {
+        return 0;
+      }
+    });
+
+    const totalStock = stock.reduce(
+      (partialSum, stock) => partialSum + stock,
+      0
+    );
+
     const inArray = salesRecord.find((record) => {
       if (sale.drugName === record.drugName) {
         return true;
@@ -33,6 +47,7 @@ const SalesRecord = async () => {
     if (!inArray) {
       const record = {
         drugName: sale.drugName,
+        totalStock: totalStock,
         quantity: sale.quantity,
       };
       salesRecord.push(record);

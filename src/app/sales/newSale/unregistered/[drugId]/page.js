@@ -1,19 +1,29 @@
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+
 import { fetchDrugById } from "@/controllers/inventory";
+import formatDrugs from "@/app/inventory/formatDrugs";
 
 import SalesButtons from "@/components/SaleButtons/SaleButtons";
 import BackgroundImage from "@/components/BackgroundImage/BackgroundImage";
 
 const NewSale = async ({ params }) => {
+  const session = await getServerSession();
+  if (!session) {
+    redirect("/login");
+  }
+
   const { drugId } = params;
 
-  const [drug] = await fetchDrugById(drugId);
+  const drugData = await fetchDrugById(drugId);
+  const [drug] = await formatDrugs(drugData);
 
   return (
     <div className=" p-3 mb-5 text-center">
       <BackgroundImage />
       <h1 className="mt-5 display-2">New sale of {drug.drugName}</h1>
       <h3 className="mt-5">Quantity</h3>
-      <SalesButtons drug={drug} />
+      <SalesButtons drugData={drugData} drug={drug} />
     </div>
   );
 };

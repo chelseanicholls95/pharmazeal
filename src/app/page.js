@@ -6,7 +6,6 @@ import LoginButton from "@/components/LoginButton/LoginButton";
 
 const HomePage = async () => {
   const session = await getServerSession();
-
   if (session) {
     redirect("/dashboard");
   }

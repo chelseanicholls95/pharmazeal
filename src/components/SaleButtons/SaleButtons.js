@@ -1,15 +1,14 @@
 "use client";
 
 import moment from "moment";
-import mongoose from "mongoose";
 
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 
 import { saveNewSale } from "@/controllers/sales";
 
-const SaleButtons = ({ drug, customer }) => {
+const SaleButtons = ({ drugData, drug, customer }) => {
   const router = useRouter();
   const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(drug.price);
@@ -37,6 +36,17 @@ const SaleButtons = ({ drug, customer }) => {
 
   const onClickContinue = async () => {
     const store = session.user.store;
+
+    if (store != drugData.store) {
+      const proceed = confirm(
+        `This medication is not in stock in this store. Collection will be from ${drug.store}. Would you like to continue?`
+      );
+
+      if (!proceed) {
+        return router.push("/inventory");
+      }
+    }
+
     const date = moment().format("MM/DD/YYYY");
 
     let newSale = {};
@@ -62,12 +72,12 @@ const SaleButtons = ({ drug, customer }) => {
         checkId: drug.requiresId,
         store: store,
       };
+
+      const sale = await saveNewSale(JSON.stringify(newSale));
+      const saleId = sale._id;
+
+      router.push(`/sales/dispense/${saleId}`);
     }
-
-    const sale = await saveNewSale(JSON.stringify(newSale));
-    const saleId = sale._id;
-
-    router.push(`/sales/dispense/${saleId}`);
   };
 
   const onClickCancel = () => {
