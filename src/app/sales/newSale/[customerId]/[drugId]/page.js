@@ -17,7 +17,7 @@ const NewSale = async ({ params }) => {
   const { customerId, drugId } = params;
 
   const drugData = await fetchDrugById(drugId);
-  const drug = await formatDrugs(drugData);
+  const [drug] = await formatDrugs(drugData);
   const [customer] = await fetchCustomerById(customerId);
 
   return (
