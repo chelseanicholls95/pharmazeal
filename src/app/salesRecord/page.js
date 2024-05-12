@@ -11,8 +11,6 @@ const SalesRecord = async () => {
   const session = await getServerSession();
   if (!session) {
     redirect("/login");
-  } else if (!session.user.isAdmin) {
-    redirect("/dashboard");
   }
 
   const salesData = await fetchSales();

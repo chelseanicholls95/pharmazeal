@@ -46,11 +46,17 @@ const Dashboard = async () => {
 
   return (
     <div>
-      <DashboardTitle />
-      <div className="d-flex justify-content-center w-100">
-        <DashboardNavigation />
-        <SalesLeaderboard leaderboard={leaderboard} />
-      </div>
+      {!session ? (
+        <div>Loading...</div>
+      ) : (
+        <div>
+          <DashboardTitle />
+          <div className="d-flex justify-content-center w-100">
+            <DashboardNavigation />
+            <SalesLeaderboard leaderboard={leaderboard} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
